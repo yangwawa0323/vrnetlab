@@ -38,9 +38,10 @@ load the kvm kernel module: `modprobe kvm`.
 Let's assume you've built the `xrv` router.
 
 Start two virtual routers:
-```
-docker run -d --name vr1 --privileged vr-xrv:5.3.3.51U
-docker run -d --name vr2 --privileged vr-xrv:5.3.3.51U
+
+```shell
+$ docker run -d --name vr1 --privileged yangwawa0323/vr-xrv:6.1.2
+$ docker run -d --name vr2 --privileged yangwawa0323/vr-xrv:6.1.2
 ```
 I'm calling them vr1 and vr2. Note that I'm using XRv 5.3.3.51U - you should
 fill in your XRv version in the image tag as the "latest" tag is not added to
@@ -126,7 +127,7 @@ To connect two virtual routers with each other we can use the `vr-xcon`
 container. Let's say we want to connect Gi0/0/0/0 of vr1 and vr2 with each
 other, we would do:
 ```
-docker run -d --name vr-xcon --link vr1 --link vr2 vr-xcon --p2p vr1/1--vr2/1
+docker run -d --name vr-xcon --link vr1 --link vr2 yangwawa0323/vr-xcon --p2p vr1/1--vr2/1
 ```
 
 Configure a link network on vr1 and vr2 and you should be able to ping!
